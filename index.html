@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="Support my independent software projects, apps, and experiments.">
+  <title>Support My Work</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f5f0;
+      --card: #fffefa;
+      --ink: #20231f;
+      --muted: #6c716a;
+      --line: #e5e2da;
+      --accent: #e9b949;
+      --accent-dark: #72520a;
+      --green: #1d784b;
+      --green-soft: #eaf5ee;
+      --blue: #2255a4;
+      --blue-soft: #edf3ff;
+      --shadow: 0 18px 55px rgba(31, 35, 30, .08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; padding: 28px 16px;
+      display: grid; place-items: center;
+      background:
+        radial-gradient(circle at 8% 4%, rgba(233,185,73,.16), transparent 27rem),
+        radial-gradient(circle at 95% 92%, rgba(34,85,164,.08), transparent 25rem),
+        var(--bg);
+      color: var(--ink);
+      font: 16px/1.55 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .page { width: min(100%, 620px); }
+    .brand { display:flex; justify-content:center; align-items:center; gap:9px; margin-bottom:18px; color:var(--muted); font-size:.88rem; font-weight:650; letter-spacing:.04em; text-transform:uppercase; }
+    .brand-mark { display:grid; place-items:center; width:34px; height:34px; border-radius:11px; background:var(--accent); color:#30260f; font-size:19px; }
+    .card { background:var(--card); border:1px solid rgba(229,226,218,.9); border-radius:26px; padding:clamp(22px, 5vw, 42px); box-shadow:var(--shadow); }
+    header { text-align:center; }
+    .eyebrow { display:inline-flex; align-items:center; gap:7px; padding:6px 11px; border:1px solid var(--line); border-radius:999px; color:var(--muted); font-size:.78rem; font-weight:650; }
+    h1 { margin:16px 0 10px; font-size:clamp(2rem, 7vw, 3rem); line-height:1.08; letter-spacing:-.055em; }
+    .intro { max-width:430px; margin:0 auto; color:var(--muted); }
+    .choices { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:30px 0 22px; }
+    .choice { appearance:none; text-align:left; padding:17px; border:1px solid var(--line); border-radius:17px; background:#fff; color:var(--ink); cursor:pointer; transition:border-color .18s, transform .18s, background .18s; }
+    .choice:hover { transform:translateY(-2px); }
+    .choice[aria-pressed="true"][data-region="india"] { border-color:var(--green); background:var(--green-soft); box-shadow:inset 0 0 0 1px var(--green); }
+    .choice[aria-pressed="true"][data-region="international"] { border-color:var(--blue); background:var(--blue-soft); box-shadow:inset 0 0 0 1px var(--blue); }
+    .choice-icon { display:block; font-size:1.55rem; margin-bottom:7px; }
+    .choice strong { display:block; font-size:1rem; }
+    .choice small { display:block; margin-top:3px; color:var(--muted); font-size:.82rem; }
+    .panel { border:1px solid var(--line); border-radius:20px; padding:22px; animation:fade-in .2s ease-out; }
+    .panel[hidden] { display:none; }
+    .panel h2 { margin:0 0 5px; font-size:1.22rem; letter-spacing:-.025em; }
+    .panel p { margin:0; color:var(--muted); font-size:.92rem; }
+    .upi-layout { display:grid; grid-template-columns: minmax(0, 1fr) 190px; gap:20px; align-items:center; margin-top:18px; }
+    .qr-frame { display:grid; place-items:center; min-height:190px; padding:12px; background:white; border:1px solid var(--line); border-radius:15px; }
+    .qr-frame img { display:block; width:100%; max-width:165px; height:auto; aspect-ratio:1; object-fit:contain; }
+    .qr-placeholder { display:grid; place-items:center; text-align:center; gap:7px; padding:12px; color:var(--muted); font-size:.8rem; }
+    .qr-placeholder span { font-size:2.2rem; }
+    .field-label { display:block; margin:18px 0 7px; font-size:.83rem; font-weight:700; }
+    .upi-value { display:flex; gap:8px; align-items:stretch; }
+    .upi-value code { display:flex; align-items:center; min-width:0; flex:1; overflow-wrap:anywhere; padding:11px 12px; border:1px solid var(--line); border-radius:11px; background:#fff; font: .9rem ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .button { display:inline-flex; justify-content:center; align-items:center; gap:8px; min-height:45px; padding:11px 15px; border:0; border-radius:12px; font:inherit; font-weight:750; text-decoration:none; cursor:pointer; transition:transform .18s, opacity .18s; }
+    .button:hover { transform:translateY(-1px); }
+    .button:focus-visible, .choice:focus-visible { outline:3px solid #e9b949; outline-offset:3px; }
+    .button-copy { background:#242721; color:#fff; white-space:nowrap; }
+    .button-green { width:100%; margin-top:13px; background:var(--green); color:#fff; }
+    .button-blue { width:100%; margin-top:20px; background:var(--blue); color:#fff; }
+    .hint { margin-top:12px !important; font-size:.8rem !important; }
+    .international-icon { display:grid; place-items:center; width:54px; height:54px; margin:20px 0 12px; border-radius:16px; background:var(--blue-soft); font-size:1.8rem; }
+    .fineprint { margin:22px 8px 0; text-align:center; color:var(--muted); font-size:.8rem; }
+    .toast { min-height:22px; margin-top:9px; color:var(--green); font-size:.85rem; font-weight:650; }
+    footer { margin-top:18px; text-align:center; color:var(--muted); font-size:.8rem; }
+    footer a { color:inherit; }
+    @keyframes fade-in { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:translateY(0); } }
+    @media (max-width:520px) {
+      body { padding:15px 11px; }
+      .card { border-radius:21px; padding:23px 17px; }
+      .choices { gap:9px; margin-top:24px; }
+      .choice { padding:14px 12px; }
+      .upi-layout { grid-template-columns:1fr; }
+      .qr-frame { width:min(100%, 220px); min-height:unset; margin:0 auto; }
+      .qr-frame img { max-width:190px; }
+      .upi-copy { order:2; }
+      .button-copy { padding:10px 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">☕</span> Independent maker</div>
+    <section class="card" aria-labelledby="page-title">
+      <header>
+        <span class="eyebrow">A little support goes a long way</span>
+        <h1 id="page-title">Support My Work</h1>
+        <p class="intro">I build apps, explore AI, and experiment with new technology. If you enjoy my projects, your support helps me keep creating and sharing. Thank you! ❤️</p>
+      </header>
+
+      <div class="choices" role="group" aria-label="Choose your payment region">
+        <button class="choice" type="button" data-region="india" aria-pressed="true">
+          <span class="choice-icon" aria-hidden="true">🇮🇳</span>
+          <strong>India</strong>
+          <small>Pay with UPI</small>
+        </button>
+        <button class="choice" type="button" data-region="international" aria-pressed="false">
+          <span class="choice-icon" aria-hidden="true">🌍</span>
+          <strong>International</strong>
+          <small>Buy Me a Coffee</small>
+        </button>
+      </div>
+
+      <section class="panel" id="india-panel" aria-labelledby="india-title">
+        <h2 id="india-title">Support with UPI 🇮🇳</h2>
+        <p>Scan the QR code with your UPI app and enter the amount you’d like to contribute.</p>
+        <div class="upi-layout">
+          <div class="upi-copy">
+            <label class="field-label" for="upi-id">My UPI ID</label>
+            <div class="upi-value">
+              <code id="upi-id">YOUR-UPI-ID@BANK</code>
+              <button class="button button-copy" id="copy-upi" type="button">Copy</button>
+            </div>
+            <a class="button button-green" id="pay-upi" href="#" rel="nofollow">Open UPI app ↗</a>
+            <p class="hint">If the button doesn’t open your UPI app, scan the QR code or copy the UPI ID.</p>
+            <div class="toast" id="copy-status" role="status" aria-live="polite"></div>
+          </div>
+          <div class="qr-frame" id="qr-frame">
+            <div class="qr-placeholder">
+              <span aria-hidden="true">▦</span>
+              <strong>Your UPI QR code</strong>
+              <span>Add your QR image in the project settings below.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="international-panel" aria-labelledby="international-title" hidden>
+        <h2 id="international-title">Support from anywhere 🌍</h2>
+        <div class="international-icon" aria-hidden="true">☕</div>
+        <p>Use my Buy Me a Coffee page to support my work from outside India.</p>
+        <a class="button button-blue" id="bmac-link" href="https://buymeacoffee.com/" target="_blank" rel="noopener noreferrer">Continue to Buy Me a Coffee ↗</a>
+        <p class="hint">You’ll be redirected to Buy Me a Coffee to complete your contribution.</p>
+      </section>
+
+      <p class="fineprint">Completely voluntary. Thank you for supporting independent development.</p>
+    </section>
+    <footer>Made with care · <a id="github-link" href="https://github.com/" target="_blank" rel="noopener noreferrer">Explore my GitHub</a></footer>
+  </main>
+
+  <script>
+    /*
+      =========================
+      PERSONALIZE THESE VALUES
+      =========================
+      1. Replace YOUR-UPI-ID@BANK with your UPI ID.
+      2. Put your QR image in this folder (example: upi-qr.png) and set qrImage below.
+      3. Replace buyMeACoffeeUrl with your creator page URL.
+      4. Replace githubUrl with your GitHub profile or project URL.
+    */
+    const CONFIG = {
+      upiId: "mdvpkr@ptaxis",
+      payeeName: "Pradeep Reddy",
+      qrImage: "QR-UPI.png", // Example: "upi-qr.png"
+      buyMeACoffeeUrl: "https://buymeacoffee.com/pradeepreddy",
+      githubUrl: "https://github.com/PradeepReddy01"
+    };
+
+    const indiaPanel = document.getElementById("india-panel");
+    const internationalPanel = document.getElementById("international-panel");
+    const regionButtons = [...document.querySelectorAll("[data-region]")];
+    const upiIdElement = document.getElementById("upi-id");
+    const payUpi = document.getElementById("pay-upi");
+    const qrFrame = document.getElementById("qr-frame");
+    const copyStatus = document.getElementById("copy-status");
+
+    function configurePage() {
+      upiIdElement.textContent = CONFIG.upiId;
+      payUpi.href = "upi://pay?pa=" + encodeURIComponent(CONFIG.upiId) +
+        "&pn=" + encodeURIComponent(CONFIG.payeeName) +
+        "&cu=INR&tn=" + encodeURIComponent("Support my work");
+
+      document.getElementById("bmac-link").href = CONFIG.buyMeACoffeeUrl;
+      document.getElementById("github-link").href = CONFIG.githubUrl;
+
+      if (CONFIG.qrImage.trim()) {
+        const img = document.createElement("img");
+        img.src = CONFIG.qrImage;
+        img.alt = "UPI payment QR code";
+        img.onerror = () => {
+          qrFrame.innerHTML = '<div class="qr-placeholder"><span aria-hidden="true">⚠️</span><strong>QR image not found</strong><span>Check the qrImage filename in index.html.</span></div>';
+        };
+        qrFrame.replaceChildren(img);
+      }
+    }
+
+    regionButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        const isIndia = button.dataset.region === "india";
+        regionButtons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+        indiaPanel.hidden = !isIndia;
+        internationalPanel.hidden = isIndia;
+        copyStatus.textContent = "";
+      });
+    });
+
+    document.getElementById("copy-upi").addEventListener("click", async () => {
+      if (CONFIG.upiId === "YOUR-UPI-ID@BANK") {
+        copyStatus.textContent = "Add your real UPI ID in CONFIG first.";
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(CONFIG.upiId);
+        copyStatus.textContent = "UPI ID copied!";
+      } catch {
+        copyStatus.textContent = "Copy unavailable here. Please select the UPI ID manually.";
+      }
+    });
+
+    configurePage();
+  </script>
+</body>
+</html>
